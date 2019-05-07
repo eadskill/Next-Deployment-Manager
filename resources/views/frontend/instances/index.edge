@@ -1,57 +1,73 @@
 @layout('layout.master')
 
-@section('content')
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Lista de Instâncias na AWS</h1>
-<p class="mb-4">
-  Clique abaixo na instância desejada para obter informações do servidor e fazer deploy.
-</p>
+@section('styles')
+	@super
 
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">Instâncias</h6>
-	</div>
-	<div class="card-body">
-		<div class="table-responsive">
-			@if(instances)
-				<table class="table table-bordered table-condensed table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
-					<thead>
-						<tr>
-							<th>Instance ID</th>
-							<th>Instance Name</th>
-							<th>Instance Public IP</th>
-							<th>Instance Public DNS</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<th>Instance ID</th>
-							<th>Instance Name</th>
-							<th>Instance Public IP</th>
-							<th>Instance Public DNS</th>
-							<th>Actions</th>
-						</tr>
-					</tfoot>
-					<tbody>
-						@each(instance in instances)
-							@if(instance.instance_ip)
-								<tr>
-									<td><a href="#">{{ instance.instance_id }}</a></td>
-									<td>{{ instance.instance_name }}</td>
-									<td><code>{{ instance.instance_ip }}</code></td>
-									<td>{{ instance.instance_public_dns }}</td>
-									<td>Settings</td>
-								</tr>
-							@endif
-						@endeach
-					</tbody>
-				</table>
-			@else
-				<div class="alert alert-info">Nenhuma instância encontrada nessa região.</div>
-			@endif
+	{{ style('vendor/datatables/dataTables.bootstrap4.min')}}
+@endsection
+
+@section('scripts')
+	@super
+
+	{{ script("vendor/datatables/jquery.dataTables.min") }}
+  	{{ script("vendor/datatables/dataTables.bootstrap4.min") }}
+  	{{ script("js/demo/datatables-demo") }}
+@endsection
+
+@section('content')
+	<!-- Page Heading -->
+	<h1 class="h3 mb-2 text-gray-800">Lista de Instâncias na AWS</h1>
+	<p class="mb-4">
+		Clique abaixo no ID da instância desejada para obter mais informações.
+	</p>
+
+	<!-- DataTales Example -->
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary">Instâncias</h6>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				@if(instances)
+					<table class="table table-bordered table-condensed table-hover table-striped" id="dataTableInstances" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>Instance ID</th>
+								<th>Instance Name</th>
+								<th>Instance Public IP</th>
+								<th>Instance Public DNS</th>
+								<th class="text-center">Actions</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Instance ID</th>
+								<th>Instance Name</th>
+								<th>Instance Public IP</th>
+								<th>Instance Type</th>
+								<th>Actions</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							@each(instance in instances)
+								@if(instance.instance_ip)
+									<tr>
+										<td><a href="{{ route('instances.edit', { id: instance.instance_id }) }}">{{ instance.instance_id }}</a></td>
+										<td>{{ instance.instance_name }}</td>
+										<td><code>{{ instance.instance_ip }}</code></td>
+										<td>{{ instance.instance_type }}</td>
+										<td class="text-center">
+											<a href="#"><i class="fa fa-cog"></i></a>
+										</td>
+									</tr>
+								@endif
+							@endeach
+						</tbody>
+					</table>
+				@else
+					<div class="alert alert-info">Nenhuma instância foi encontrada nessa região.</div>
+				@endif
+			</div>
 		</div>
 	</div>
-</div>
 @endsection

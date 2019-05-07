@@ -1,0 +1,47 @@
+@layout('layout.master')
+
+@section('content')
+	<h1 class="h3 mb-2 text-gray-800">Configurar Instância <span class="badge badge-info">{{ instance.InstanceId }}</span></h1>
+	<p class="mb-4">
+		Configure corretamente a instância abaixo para gerenciamento da Plataforma.
+	</p>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Configuração</h6>
+				</div>
+				<div class="card-body">
+					<form action="{{ route('instances.update', { id: instance.InstanceId }) }}?_method=PUT" method="POST">
+						{{ csrfField() }}
+
+						<div>Informações da Instância</div>
+
+						<div class="form-row">
+							<div class="col-7">
+								<input type="text" name="name" class="form-control" readonly placeholder="Name" value="{{ instance.instance_name }}">
+							</div>
+							<div class="col">
+								<input type="text" name="public_ip" class="form-control" placeholder="IP" readonly value="{{ instance.PublicIpAddress }}">
+							</div>
+						</div>
+
+						<div class="form-row align-items-center mt-3">
+							<div class="col-auto my-1">
+								<label class="mr-sm-2" for="isnext">Essa instância é uma Plataforma NEXT?</label>
+								<select class="custom-select mr-sm-2" id="isnext" name="isnext">
+									<option selected value="0">Escolha...</option>
+									<option value="1">Sim</option>
+									<option value="2">Não</option>
+								</select>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary mt-4">Salvar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+@endsection
