@@ -1,0 +1,22 @@
+@layout('layout.master')
+
+@section('styles')
+	@super
+
+	{{ style('vendor/datatables/dataTables.bootstrap4.min')}}
+@endsection
+
+@section('scripts')
+	@super
+
+	{{ script("vendor/datatables/jquery.dataTables.min") }}
+  	{{ script("vendor/datatables/dataTables.bootstrap4.min") }}
+  	{{ script("js/demo/datatables-demo") }}
+@endsection
+
+@section('content')
+	<h1 class="h3 mb-2 text-gray-800">Histórico de Versionamento</h1>
+	<p class="mb-4">
+		Veja abaixo a lista de versões que já foram realizadas nesse cliente.
+	</p>
+@endsection

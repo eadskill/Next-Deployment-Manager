@@ -2,6 +2,10 @@
 
 const Route = use("Route");
 
+Route.get("/", ({ response }) => {
+	return response.redirect("dashboard");
+});
+
 Route.group(() => {
 	Route.get("/", "DashboardController.index");
 }).prefix("dashboard");

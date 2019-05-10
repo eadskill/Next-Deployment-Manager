@@ -51,7 +51,7 @@
 						<tbody>
 							@each(client in clients)
 								<tr>
-									<td><a href="#">{{ client.instance_id }}</a></td>
+									<td><a href="{{ route('clients.show', { id: client.id }) }}">{{ client.instance_id }}</a></td>
 									<td>{{ client.name }}</td>
 									<td>
 										@if(client.version)
@@ -63,7 +63,7 @@
 									<th>{{ client.created_at_format }}</th>
 									<th>{{ client.updated_at_format }}</th>
 									<td class="text-center">
-										<a href="#">
+										<a href="{{ route('clients.edit', { id: client.id }) }}">
 											<i class="fa fa-cog"></i>
 										</a>
 									</td>

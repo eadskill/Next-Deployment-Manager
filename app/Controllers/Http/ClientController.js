@@ -10,6 +10,16 @@ class ClientController {
 			clients: clients.toJSON()
 		});
 	}
+
+	async edit({ params, view, request, response }) {
+		const { idcliente } = params.id;
+
+		return view.render("frontend.clients.edit");
+	}
+
+	async show({ view }) {
+		return view.render("frontend.clients.show");
+	}
 }
 
 module.exports = ClientController;

@@ -1,0 +1,38 @@
+@layout('layout.master')
+
+@section('styles')
+	@super
+
+	{{ style('vendor/datatables/dataTables.bootstrap4.min')}}
+	{{ style('css/sb-custom')}}
+@endsection
+
+@section('scripts')
+	@super
+
+	{{ script("vendor/datatables/jquery.dataTables.min") }}
+  	{{ script("vendor/datatables/dataTables.bootstrap4.min") }}
+  	{{ script("js/demo/datatables-demo") }}
+@endsection
+
+@section('content')
+	<h1 class="h3 mb-2 text-gray-800">Versionamento</h1>
+	<p class="mb-4">
+		Execute as funções abaixo para atualizar a Plataforma NEXT
+	</p>
+
+	<div class="row">
+		<div class="col-12">
+			<button class="btn btn-warning">STATUS</button>
+			<button class="btn btn-primary">PULL</button>
+			<button class="btn btn-info">STASH</button>
+			<button class="btn btn-danger">RESET</button>
+		</div>
+
+		<div class="col-12 mt-4">
+			<h4>LOG DE RESPOSTAS DO SERVIDOR</h4>
+
+			<div id="log-response-server"></div>
+		</div>
+	</div>
+@endsection
