@@ -2,4 +2,7 @@
 	background-color: #f3f3f3;
 	height: 570px;
 	border: 1px solid #d0cdd0;
+	box-sizing: border-box;
+	padding: 8px 10px;
+	overflow: auto;
 }

@@ -106,7 +106,7 @@ class InstanceController {
 	}
 
 	async update({ params, request, response }) {
-		const { name, isnext } = request.all();
+		const { name, isnext, protocol, url } = request.all();
 
 		const client = await Client.query()
 			.where("instance_id", params.id)
@@ -117,11 +117,17 @@ class InstanceController {
 			client.delete();
 		}
 
+		/**
+		 * TODO:
+		 * Fazer requisição para o server do NEXT para saber a versão atual da plataforma para gravar na base
+		 */
+
 		// Se o cliente não existir e a opção for 1
 		if (client == 0 && isnext == 1) {
 			await Client.create({
 				name,
-				instance_id: params.id
+				instance_id: params.id,
+				url: `${protocol}://${url}`
 			});
 		}
 

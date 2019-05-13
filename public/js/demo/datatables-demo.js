@@ -17,4 +17,30 @@ $(document).ready(function() {
 			}
 		}
 	});
+
+	/**
+	 * TODO:
+	 * Criar função para fazer requisição HTTP
+	 */
+
+	$(".send-command-server").on("click", function() {
+		let boxLog = $("#log-response-server");
+		let command = $(this).data("command");
+
+		if (command == "pull" || command == "reset") {
+			// Perguntar se tem certeza
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "http://homologacao.lms.eadskill.com.br/api/deployment",
+			data: {
+				command: command,
+				token: ""
+			},
+			success: function(response) {
+				boxLog.append(response + "<br>");
+			}
+		});
+	});
 });

@@ -18,15 +18,15 @@
 @section('content')
 	<h1 class="h3 mb-2 text-gray-800">Versionamento</h1>
 	<p class="mb-4">
-		Execute as funções abaixo para atualizar a Plataforma NEXT
+		Execute as funções abaixo para gerenciar a Plataforma NEXT
 	</p>
 
 	<div class="row">
 		<div class="col-12">
-			<button class="btn btn-warning">STATUS</button>
-			<button class="btn btn-primary">PULL</button>
-			<button class="btn btn-info">STASH</button>
-			<button class="btn btn-danger">RESET</button>
+			<button data-command="status" class="btn btn-warning send-command-server">STATUS</button>
+			<button data-command="pull" class="btn btn-primary send-command-server">PULL</button>
+			<button data-command="stash" class="btn btn-info send-command-server">STASH</button>
+			<button data-command="reset" class="btn btn-danger send-command-server">RESET</button>
 		</div>
 
 		<div class="col-12 mt-4">

@@ -13,7 +13,7 @@
 					<h6 class="m-0 font-weight-bold text-primary">Configuração</h6>
 				</div>
 				<div class="card-body">
-					<form action="{{ route('instances.update', { id: instance.InstanceId }) }}?_method=PUT" method="POST">
+					<form action="{{ route('instances.update', { id: instance.InstanceId }) }}?_method=PUT" method="POST" autocomplete="off">
 						{{ csrfField() }}
 
 						<div>Informações da Instância</div>
@@ -24,6 +24,18 @@
 							</div>
 							<div class="col">
 								<input type="text" name="public_ip" class="form-control" placeholder="IP" readonly value="{{ instance.PublicIpAddress }}">
+							</div>
+						</div>
+
+						<div class="form-row mt-3">
+							<div class="col-2">
+								<select name="protocol" id="protocol" class="form-control">
+									<option value="http">HTTP</option>
+									<option value="https">HTTPS</option>
+								</select>
+							</div>
+							<div class="col-10">
+								<input type="text" name="url" class="form-control" placeholder="http(s)://www.example.com" />
 							</div>
 						</div>
 
