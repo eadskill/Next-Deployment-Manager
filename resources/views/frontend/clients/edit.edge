@@ -12,7 +12,7 @@
 
 	{{ script("vendor/datatables/jquery.dataTables.min") }}
   	{{ script("vendor/datatables/dataTables.bootstrap4.min") }}
-  	{{ script("js/demo/datatables-demo") }}
+  	{{ script("js/sb-custom") }}
 @endsection
 
 @section('content')
@@ -22,17 +22,22 @@
 	</p>
 
 	<div class="row">
-		<div class="col-12">
-			<button data-command="status" class="btn btn-warning send-command-server">STATUS</button>
-			<button data-command="pull" class="btn btn-primary send-command-server">PULL</button>
-			<button data-command="stash" class="btn btn-info send-command-server">STASH</button>
-			<button data-command="reset" class="btn btn-danger send-command-server">RESET</button>
-		</div>
+		<form id="form-server" class="col-12">
+			<div class="col-12">
+				<button type="button" data-command="status" class="btn btn-warning send-command-server">STATUS</button>
+				<button type="button" data-command="pull" class="btn btn-primary send-command-server">PULL</button>
+				<button type="button" data-command="stash" class="btn btn-info send-command-server">STASH</button>
+				<button type="button" data-command="reset" class="btn btn-danger send-command-server">RESET</button>
+			</div>
 
-		<div class="col-12 mt-4">
-			<h4>LOG DE RESPOSTAS DO SERVIDOR</h4>
+			<div class="col-12 mt-4">
+				<h4>LOG DE RESPOSTAS DO SERVIDOR <span id="loading-server"><i class="fa fa-loading fa-spinner fa-spin text-gray-500"></i></span></h4>
 
-			<div id="log-response-server"></div>
-		</div>
+				<div id="log-response-server"></div>
+			</div>
+
+			<input type="hidden" id="idcliente" name="idcliente" value="{{ idcliente }}">
+			{{ csrfField() }}
+		</form>
 	</div>
 @endsection

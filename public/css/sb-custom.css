@@ -6,3 +6,11 @@
 	padding: 8px 10px;
 	overflow: auto;
 }
+
+#loading-server {
+	display: none;
+}
+
+#loading-server .fa {
+	font-size: 21px;
+}

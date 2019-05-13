@@ -12,3 +12,5 @@ Route.group(() => {
 
 Route.resource("instances", "InstanceController");
 Route.resource("clients", "ClientController");
+Route.get("deploy", "DeployController.index");
+Route.post("deploy", "DeployController.store");

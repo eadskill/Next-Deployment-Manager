@@ -12,9 +12,9 @@ class ClientController {
 	}
 
 	async edit({ params, view, request, response }) {
-		const { idcliente } = params.id;
-
-		return view.render("frontend.clients.edit");
+		return view.render("frontend.clients.edit", {
+			idcliente: params.id
+		});
 	}
 
 	async show({ view }) {
