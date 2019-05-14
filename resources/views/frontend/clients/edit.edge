@@ -27,11 +27,11 @@
 	<div class="row">
 		<form id="form-server" class="w-100">
 			<div class="col-12">
-				<button type="button" data-command="status" class="btn btn-warning send-command-server">STATUS</button>
-				<button type="button" data-command="pull" class="btn btn-primary send-command-server">PULL</button>
-				<button type="button" data-command="stash" class="btn btn-secondary send-command-server">STASH</button>
-				<button type="button" data-command="reset" class="btn btn-danger send-command-server">RESET</button>
 				<button type="button" data-command="log --oneline --pretty=medium" class="btn btn-info send-command-server">LOG</button>
+				<button type="button" data-command="status" class="btn btn-primary send-command-server">STATUS</button>
+				<button type="button" data-command="stash" class="btn btn-secondary send-command-server">STASH</button>
+				<button type="button" data-command="pull" class="btn btn-success send-command-server">PULL</button>
+				<button type="button" data-command="reset" class="btn btn-danger send-command-server">RESET</button>
 			</div>
 
 			<div class="col-12 mt-4">
@@ -44,6 +44,10 @@
 
 			<input type="hidden" id="idcliente" name="idcliente" value="{{ idcliente }}">
 			{{ csrfField() }}
+
+			<div class="col-12 mt-4">
+				<button type="button" id="clear-log" class="btn btn-outline-dark mb-3">LIMPAR LOG</button>
+			</div>
 		</form>
 	</div>
 @endsection

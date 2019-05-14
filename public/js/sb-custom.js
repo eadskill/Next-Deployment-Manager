@@ -31,11 +31,30 @@ $(document).ready(function() {
 		}
 	};
 
+	/**
+	 * Limpar log do servidor
+	 */
+	$("#clear-log").on("click", function() {
+		clearLog();
+	});
+
+	function clearLog() {
+		let boxLog = $("#log-response-server");
+		boxLog.html("");
+	}
+
+	/**
+	 * Envia comando para o servidor
+	 */
 	$(".send-command-server").on("click", function() {
-		let command = $(this).data("command");
+		sendCommandServer(this);
+	});
+
+	function sendCommandServer(self) {
+		let command = $(self).data("command");
 		let idclient = $("#idcliente").val();
 
-		if (command == "pull" || command == "reset") {
+		if (command == "pull" || command == "reset" || command == "stash") {
 			Swal.fire({
 				title: "Você tem certeza dessa ação?",
 				text: "Executar essa ação poderá afetar a plataforma.",
@@ -75,7 +94,7 @@ $(document).ready(function() {
 				function() {}
 			);
 		}
-	});
+	}
 
 	function beforeSuccessCommand() {
 		let loading = $("#loading-server");
