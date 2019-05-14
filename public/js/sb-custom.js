@@ -36,32 +36,62 @@ $(document).ready(function() {
 		let idclient = $("#idcliente").val();
 
 		if (command == "pull" || command == "reset") {
-			// Perguntar se tem certeza
+			Swal.fire({
+				title: "Você tem certeza dessa ação?",
+				text: "Executar essa ação poderá afetar a plataforma.",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Do It!",
+				cancelButtonText: "Cancelar"
+			}).then(result => {
+				if (result.value) {
+					NEXT.callAjax(
+						"/deploy/",
+						"POST",
+						{
+							command: command,
+							id: idclient
+						},
+						beforeSuccessCommand,
+						successCommand,
+						function() {},
+						function() {}
+					);
+				}
+			});
+		} else {
+			NEXT.callAjax(
+				"/deploy/",
+				"POST",
+				{
+					command: command,
+					id: idclient
+				},
+				beforeSuccessCommand,
+				successCommand,
+				function() {},
+				function() {}
+			);
 		}
-
-		NEXT.callAjax(
-			"/deploy/",
-			"POST",
-			{
-				command: command,
-				id: idclient
-			},
-			beforeSuccessCommand,
-			successCommand,
-			function() {},
-			function() {}
-		);
 	});
 
 	function beforeSuccessCommand() {
 		let loading = $("#loading-server");
 		loading.show();
 	}
+
 	function successCommand(response) {
 		let loading = $("#loading-server");
 		let boxLog = $("#log-response-server");
 
-		boxLog.prepend(response + "<br>");
+		boxLog.find("code").append(response.replace(/'/g, ""));
+
+		hljs.initHighlighting();
+
+		boxLog.scrollTop(boxLog.find("pre").height());
+
 		loading.hide();
 	}
 });

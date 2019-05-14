@@ -3,8 +3,9 @@
 	height: 570px;
 	border: 1px solid #d0cdd0;
 	box-sizing: border-box;
-	padding: 8px 10px;
-	overflow: auto;
+	padding: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #loading-server {
@@ -13,4 +14,8 @@
 
 #loading-server .fa {
 	font-size: 21px;
+}
+
+#log-response-server pre {
+	margin: 0;
 }

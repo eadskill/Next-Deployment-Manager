@@ -5,13 +5,16 @@
 
 	{{ style('vendor/datatables/dataTables.bootstrap4.min')}}
 	{{ style('css/sb-custom')}}
+	{{ style('highlight/styles/dracula') }}
 @endsection
 
 @section('scripts')
 	@super
 
 	{{ script("vendor/datatables/jquery.dataTables.min") }}
-  	{{ script("vendor/datatables/dataTables.bootstrap4.min") }}
+	{{ script("vendor/datatables/dataTables.bootstrap4.min") }}
+	{{ script('highlight/highlight.pack') }}
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   	{{ script("js/sb-custom") }}
 @endsection
 
@@ -22,18 +25,21 @@
 	</p>
 
 	<div class="row">
-		<form id="form-server" class="col-12">
+		<form id="form-server" class="w-100">
 			<div class="col-12">
 				<button type="button" data-command="status" class="btn btn-warning send-command-server">STATUS</button>
 				<button type="button" data-command="pull" class="btn btn-primary send-command-server">PULL</button>
-				<button type="button" data-command="stash" class="btn btn-info send-command-server">STASH</button>
+				<button type="button" data-command="stash" class="btn btn-secondary send-command-server">STASH</button>
 				<button type="button" data-command="reset" class="btn btn-danger send-command-server">RESET</button>
+				<button type="button" data-command="log --oneline --pretty=medium" class="btn btn-info send-command-server">LOG</button>
 			</div>
 
 			<div class="col-12 mt-4">
 				<h4>LOG DE RESPOSTAS DO SERVIDOR <span id="loading-server"><i class="fa fa-loading fa-spinner fa-spin text-gray-500"></i></span></h4>
 
-				<div id="log-response-server"></div>
+				<div id="log-response-server">
+					<pre><code class='bash'></code></pre>
+				</div>
 			</div>
 
 			<input type="hidden" id="idcliente" name="idcliente" value="{{ idcliente }}">
