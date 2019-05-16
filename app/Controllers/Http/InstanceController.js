@@ -3,6 +3,7 @@
 const aws = require("aws-sdk");
 const awsConfig = require("../../../config/aws");
 const Client = use("App/Models/Instance");
+const httpRequest = use("axios");
 
 /**
  * Resourceful controller for interacting with instances
@@ -106,28 +107,31 @@ class InstanceController {
 	}
 
 	async update({ params, request, response }) {
-		const { name, isnext, protocol, url } = request.all();
-
+		const { name, protocol, url } = request.all();
 		const client = await Client.query()
 			.where("instance_id", params.id)
 			.getCount();
 
-		// Se o cliente existir e a opção for 2
-		if (client > 0 && isnext == 2) {
-			client.delete();
+		// Se o cliente existir redireciona
+		if (client > 0) {
+			return response.redirect("/clients");
 		}
 
 		/**
-		 * TODO:
 		 * Fazer requisição para o server do NEXT para saber a versão atual da plataforma para gravar na base
 		 */
+		const version = await httpRequest.get(
+			`${protocol}://${url}/deployment/version`
+		);
 
 		// Se o cliente não existir e a opção for 1
-		if (client == 0 && isnext == 1) {
+		if (client == 0) {
 			await Client.create({
 				name,
 				instance_id: params.id,
-				url: `${protocol}://${url}`
+				url: `${protocol}://${url}`,
+				version: version.data.version || null,
+				build: version.data.build || null
 			});
 		}
 

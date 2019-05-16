@@ -11,9 +11,12 @@ class DeployController {
 
 		const client = await Client.find(id);
 
-		const server = await httpRequest.post(`${client.url}/deployment`, {
-			command: command
-		});
+		const server = await httpRequest.post(
+			`${client.url}/deployment/make-deploy`,
+			{
+				command: command
+			}
+		);
 
 		return response.send(server.data);
 	}

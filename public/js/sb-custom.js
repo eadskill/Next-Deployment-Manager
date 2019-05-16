@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 	function clearLog() {
 		let boxLog = $("#log-response-server");
-		boxLog.html("");
+		boxLog.find("code").html("");
 	}
 
 	/**

@@ -33,6 +33,7 @@
 								<th>Instance ID</th>
 								<th>Instance Name</th>
 								<th>Version</th>
+								<th>Build</th>
 								<th>Created At</th>
 								<th>Updated At</th>
 								<th class="text-center">Actions</th>
@@ -43,6 +44,7 @@
 								<th>Instance ID</th>
 								<th>Instance Name</th>
 								<th>Version</th>
+								<th>Build</th>
 								<th>Created At</th>
 								<th>Updated At</th>
 								<th class="text-center">Actions</th>
@@ -55,9 +57,16 @@
 									<td>{{ client.name }}</td>
 									<td>
 										@if(client.version)
-											{{ client.version }}
+											<span class="badge badge-success">{{ client.version }}</span>
 										@else
 											<span class="badge badge-info">No Version Identified</span>
+										@endif
+									</td>
+									<td>
+										@if(client.build)
+											<span class="badge badge-secondary">{{ client.build }}</span>
+										@else
+											<span class="badge badge-info">No Build Identified</span>
 										@endif
 									</td>
 									<th>{{ client.created_at_format }}</th>
