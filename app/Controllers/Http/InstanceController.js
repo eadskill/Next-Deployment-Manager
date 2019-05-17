@@ -124,7 +124,7 @@ class InstanceController {
 			`${protocol}://${url}/deployment/version`
 		);
 
-		// Se o cliente não existir e a opção for 1
+		// Se o cliente não existir
 		if (client == 0) {
 			await Client.create({
 				name,

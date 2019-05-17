@@ -50,12 +50,12 @@
 							@each(instance in instances)
 								@if(instance.instance_ip)
 									<tr>
-										<td><a href="{{ route('instances.edit', { id: instance.instance_id }) }}">{{ instance.instance_id }}</a></td>
+										<td><a href="{{ route('instances.show', { id: instance.instance_id }) }}">{{ instance.instance_id }}</a></td>
 										<td>{{ instance.instance_name }}</td>
 										<td><code>{{ instance.instance_ip }}</code></td>
 										<td>{{ instance.instance_type }}</td>
 										<td class="text-center">
-											<a href="#"><i class="fa fa-cog"></i></a>
+											<a href="{{ route('instances.edit', { id: instance.instance_id }) }}"><i class="fa fa-cog"></i></a>
 										</td>
 									</tr>
 								@endif
