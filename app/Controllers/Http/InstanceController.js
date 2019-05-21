@@ -106,13 +106,13 @@ class InstanceController {
 		}
 	}
 
-	async update({ params, request, response }) {
+	async update({ params, request, response, session }) {
 		const { name, protocol, url } = request.all();
 		const client = await Client.query()
 			.where("instance_id", params.id)
 			.getCount();
 
-		// Se o cliente existir redireciona
+		// Se o cliente existir na tabela de clientes, redireciona
 		if (client > 0) {
 			return response.redirect("/clients");
 		}
@@ -120,21 +120,30 @@ class InstanceController {
 		/**
 		 * Fazer requisição para o server do NEXT para saber a versão atual da plataforma para gravar na base
 		 */
-		const version = await httpRequest.get(
-			`${protocol}://${url}/deployment/version`
-		);
+		try {
+			const version = await httpRequest.get(
+				`${protocol}://${url}/deployment/version`
+			);
 
-		// Se o cliente não existir
-		if (client == 0) {
-			await Client.create({
-				name,
-				instance_id: params.id,
-				url: `${protocol}://${url}`,
-				version: version.data.version || null,
-				build: version.data.build || null
+			// Se o cliente não existir
+			if (client == 0) {
+				await Client.create({
+					name,
+					instance_id: params.id,
+					url: `${protocol}://${url}`,
+					version: version.data.version || null,
+					build: version.data.build || null
+				});
+			}
+		} catch (error) {
+			session.flash({
+				error:
+					"Não foi possível obter a versão da plataforma. Verifique o destino, por favor."
 			});
+			return response.redirect("/clients");
 		}
 
+		session.flash({ success: "Plataforma adicionada com sucesso!" });
 		return response.redirect("/clients");
 	}
 }

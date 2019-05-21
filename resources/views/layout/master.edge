@@ -11,11 +11,8 @@
 	<title>NEXT Console</title>
 
 	@section('styles')
-		<!-- Custom fonts for this template-->
 		{{ style('vendor/fontawesome-free/css/all.min') }}
 		{{ style('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i') }}
-
-		<!-- Custom styles for this template-->
 		{{ style('css/sb-admin-2.min') }}
 	@endsection
 </head>
@@ -64,15 +61,15 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
 					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+				<div class="modal-body">Aperte o botão SAIR se você tem certeza que quer sair da plataforma.</div>
 				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" href="auth/logout">Sair</a>
 				</div>
 			</div>
 		</div>
