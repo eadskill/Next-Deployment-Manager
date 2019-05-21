@@ -1,7 +1,7 @@
 "use strict";
 
 const Model = use("Model");
-const moment = require("moment");
+const moment = use("moment");
 
 class Instance extends Model {
 	static get computed() {

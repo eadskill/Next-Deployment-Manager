@@ -2,6 +2,7 @@
 
 const Hash = use("Hash");
 const Model = use("Model");
+const moment = use("moment");
 
 class User extends Model {
 	static boot() {
@@ -12,6 +13,14 @@ class User extends Model {
 				userInstance.password = await Hash.make(userInstance.password);
 			}
 		});
+	}
+
+	static get computed() {
+		return ["created_at_format", "updated_at_format"];
+	}
+
+	getCreatedAtFormat({ created_at }) {
+		return moment(created_at).format("DD/MM/YYYY HH:mm");
 	}
 
 	tokens() {
