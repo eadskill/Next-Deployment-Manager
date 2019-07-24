@@ -53,7 +53,7 @@ module.exports = {
     | values. Read documentation for that.
     |
     */
-		trustProxy: false,
+		trustProxy: true,
 
 		/*
     |--------------------------------------------------------------------------
